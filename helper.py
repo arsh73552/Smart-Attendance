@@ -1,4 +1,5 @@
 from dependencies import *
+NUM_STUDENTS = 14
 def generateEncodings(images):
     '''
         Takes a list of images as input and generates a list of Encodings for faces in images.
@@ -39,3 +40,17 @@ def load_encoding():
     with open("test", "rb") as fp:
         encodingList = pickle.load(fp)
     return encodingList
+
+def generate_encodings_train(images):
+    '''
+        Generates Encoding for the faces detected in the video of the classroom. These encodings are generate
+        so that their euclidean distance from the true images can be measured to determine if a match is found.
+        return = encoded_face_train -> List of encodings.
+    '''
+    encoded_face_train = []
+    #encoded_face_train = generateEncodings(images)
+    #Uncomment the line above if using first time. Re-comment after.
+    encoded_face_train = load_encoding()
+    #Comment the line above if using first time. Uncomment after.
+    save_encoding(encoded_face_train) 
+    return encoded_face_train
